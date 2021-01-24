@@ -1,14 +1,14 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import PropTypes from "prop-types"
-import {HeaderWrapper, Image} from './headerStyles/headerStyles'
-import Menu from './Menu' 
+import { HeaderWrapper, Image } from './headerStyles/headerStyles'
+import Menu from './Menu'
 
 const Header = ({ siteTitle }) => {
   const {
     logo,
-    wpcontent: {menuItems},
-     } = useStaticQuery(graphql`
+    wpcontent: { menuItems },
+  } = useStaticQuery(graphql`
   query {
     logo: file(relativePath: {eq: "logo2.png"}) {
       childImageSharp {
@@ -16,8 +16,7 @@ const Header = ({ siteTitle }) => {
         ...GatsbyImageSharpFixed_withWebp
       }
     }
-  }
-      
+  }      
     wpcontent {
       menuItems {
         edges {
@@ -29,16 +28,16 @@ const Header = ({ siteTitle }) => {
       }
     }
   }
-  `)
+`)
 
-   return (
-   <HeaderWrapper>
-    <Link to="/">
-    <Image alt="logo artist agency" fixed={logo.childImageSharp.fixed} /> 
-    </Link>
-       <Menu menuItems={menuItems.edges} /> 
+  return (
+    <HeaderWrapper>
+      <Link to="/">
+        <Image alt="logo sanne's wolwinkel" fixed={logo.childImageSharp.fixed} />
+      </Link>
+      <Menu menuItems={menuItems.edges} />
     </HeaderWrapper>
-   )
+  )
 }
 
 Header.propTypes = {
