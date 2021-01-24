@@ -1,15 +1,15 @@
 import React from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import {Wrapper, Image, BottomEdgeDown, BottomEdgeUp, Yarn} from "./pageStyles/pageStyles"
+import { Wrapper, Image, BottomEdgeDown, BottomEdgeUp, Yarn } from "./pageStyles/pageStyles"
 import { COLORS } from "../constants"
 
 const IndexPage = () => {
   const {
     wpcontent: {
       page: {
-        homePageMeta: {
+        homePage: {
           homePageDescription,
           homePageHeaderDescription,
           homePageHeaderTitle,
@@ -22,7 +22,7 @@ const IndexPage = () => {
   query {
   wpcontent {
     page(id: "home", idType: URI) {
-      homePageMeta {
+      homePage {
         homePageDescription
         homePageHeaderDescription
         homePageHeaderTitle
@@ -40,7 +40,7 @@ const IndexPage = () => {
         homePageFeaturedProducts {
           ... on WPGraphql_Yarn {
             id
-            Yarn {
+            yarn {
               name
               brand
               fiberContent
@@ -49,44 +49,52 @@ const IndexPage = () => {
                 sourceUrl
                 imageFile {
                   childImageSharp{
-                  fluid(quality: 100, grayscale: true) {
-                   ... GatsbyImageSharpFluid_withWebp
+                    fluid(quality: 100) {
+                      ... GatsbyImageSharpFluid_withWebp
+                      }
                     }
-                 }
+                  }
                 }
               }
-           }
-          }    
+            }    
+          }
         }
-     }
+      }
     }
-  }
   }
   `);
   console.log(homePageFeaturedProducts)
   return (
     <Layout>
       <SEO title="Home" />
-    <Wrapper>
-      <div className="banner">
-        <Image fluid={homePageHeaderPicture.imageFile.childImageSharp.fluid} alt={homePageHeaderPicture.altText}/>
-        <div className="inner-div">
-          <p className="header-title">{homePageHeaderTitle}</p>
-          <p className="header-description">{homePageHeaderDescription}</p>
+      <Wrapper>
+        <div className="banner">
+          <Image fluid={homePageHeaderPicture.imageFile.childImageSharp.fluid} alt={homePageHeaderPicture.altText} />
+          <div className="inner-div">
+            <p className="header-title">{homePageHeaderTitle}</p>
+            <p className="header-description">{homePageHeaderDescription}</p>
+          </div>
+          <BottomEdgeDown color={COLORS.BLACK} />
         </div>
-        <BottomEdgeDown color={COLORS.BLACK}/>
-      </div>
-      <div className="description">
-        <p>{homePageDescription}</p>
-        <BottomEdgeUp color={COLORS.PRIMARY}/>
-      </div>
-      <div className="yarns">
-        <h2>Featured Products</h2>
-        <div className="yarn-items">
-          {/*homePageFeaturedProducts.map(({}))*/}
+        <div className="description">
+          <p>{homePageDescription}</p>
+          <BottomEdgeUp color={COLORS.PRIMARY} />
         </div>
-      </div>
-    </Wrapper>
+        <div className="yarns">
+          <h2>Featured Products</h2>
+          <div className="yarn-items">
+            {homePageFeaturedProducts.map(({ yarn, slug }) => (
+              <Yarn to={`/${slug}`}>
+                <Image fluid={yarn.yarnPicture.imageFile.childImageSharp.fluid} altText={yarn.yarnPicture.altText} />
+                <div className="yarn-info">
+                  <p>{yarn.name}</p>
+                  <p>{yarn.brand}</p>
+                </div>
+              </Yarn>
+            ))}
+          </div>
+        </div>
+      </Wrapper>
     </Layout>
   )
 }
