@@ -126,15 +126,15 @@ export const Wrapper = styled.div`
     }
   }
 
-  .artists {
+  .yarns {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
     padding: 2rem 5%;
-    background-color: ${({ artistsColor = COLORS.PRIMARY }) =>
-      `${artistsColor}`};
+    background-color: ${({ yarnsColor = COLORS.PRIMARY }) =>
+      `${yarnsColor}`};
 
     h2 {
       font-family: ${FONT_FAMILIES.TITLE};
@@ -149,7 +149,7 @@ export const Wrapper = styled.div`
       }
     }
 
-    .artist-items {
+    .yarn-items {
       display: flex;
       flex-direction: row;
       justify-content: center;
@@ -178,7 +178,7 @@ export const Yarn = styled(Link)`
   &:hover {
     transform: scale(1.05);
 
-    .artist-info {
+    .yarn-info {
       height: 100%;
       background-color: ${COLORS.TERTIARY + "c0"};
 
@@ -188,7 +188,7 @@ export const Yarn = styled(Link)`
     }
   }
 
-  .artist-info {
+  .yarn-info {
     display: flex;
     flex-direction: column;
     position: absolute;

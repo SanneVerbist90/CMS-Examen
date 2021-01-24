@@ -83,7 +83,7 @@ const IndexPage = () => {
       <div className="yarns">
         <h2>Featured Products</h2>
         <div className="yarn-items">
-          {homePageFeaturedProducts.map(({}))}
+          {/*homePageFeaturedProducts.map(({}))*/}
         </div>
       </div>
     </Wrapper>
