@@ -39,6 +39,7 @@ const IndexPage = () => {
         }
         homePageFeaturedProducts {
           ... on WPGraphql_Yarn {
+            slug
             id
             yarn {
               name
@@ -63,7 +64,6 @@ const IndexPage = () => {
     }
   }
   `);
-  console.log(homePageFeaturedProducts)
   return (
     <Layout>
       <SEO title="Home" />
@@ -84,7 +84,7 @@ const IndexPage = () => {
           <h2>Featured Products</h2>
           <div className="yarn-items">
             {homePageFeaturedProducts.map(({ yarn, slug }) => (
-              <Yarn to={`/${slug}`}>
+              <Yarn to={`/${slug}`} key={slug}>
                 <Image fluid={yarn.yarnPicture.imageFile.childImageSharp.fluid} altText={yarn.yarnPicture.altText} />
                 <div className="yarn-info">
                   <p>{yarn.name}</p>

@@ -6,7 +6,7 @@ const Menu = ({menuItems}) => {
     return (
         <MenuList>
             {menuItems.map(({node: item}, i) => (
-                <li keu={i}>
+                <li key={i}>
                     <Link activeClassName="nav-active" to={item.path}>
                         {item.label}
                     </Link>
