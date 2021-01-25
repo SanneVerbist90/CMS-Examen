@@ -2,7 +2,7 @@ import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { Wrapper, Image, BottomEdgeDown, BottomEdgeUp, Yarn } from "./pageStyles/pageStyles"
+import { Wrapper, Image, BottomEdgeDown, BottomEdgeUp, Yarn } from "../pageStyles/pageStyles"
 import { COLORS } from "../constants"
 
 const IndexPage = () => {
