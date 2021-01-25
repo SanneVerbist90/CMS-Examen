@@ -6,6 +6,7 @@ import Header from "./header/header"
 import "./layout.css"
 import  Hamburger  from "./header/hamburger"
 import OverlayMenu from './header/overlayMenu'
+import { COLORS } from "../constants"
 
 const Layout = ({ children }) => {
 const [menuOpen, setMenuOpen] = useState(false);
@@ -36,13 +37,7 @@ const handleOverlayMenu = () => setMenuOpen(!menuOpen)
         }}
       >
         <main>{children}</main>
-        <footer
-          style={{
-            marginTop: `2rem`,
-          }}
-        >
-         Sanne Verbist, examenopdracht CMS Development © {new Date().getFullYear()}
-        </footer>
+        
       </div>
     </>
   )
